@@ -7,6 +7,7 @@ app.set('port', (process.env.PORT || 5000));
 app.use(express.static(__dirname + '/public'));
 
 app.get('/', function(request, response) {
+  var res
   ;(async () => {
     var browser = await puppeteer.launch({
       args : [
@@ -16,7 +17,6 @@ app.get('/', function(request, response) {
     });
     var page = await browser.newPage();
     
-    var res
     try {
       console.log('in try')
       await page.goto('https://www.cresco.co.jp/',{
