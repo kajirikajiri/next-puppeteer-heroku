@@ -1,6 +1,5 @@
 var express = require('express');
 var puppeteer = require('puppeteer')
-var path = require('path');
 var app = express();
 var delay = require('delay');
 
@@ -9,13 +8,13 @@ app.use(express.static(__dirname + '/public'));
 
 app.get('/', function(request, response) {
   ;(async () => {
-    const browser = await puppeteer.launch({
+    var browser = await puppeteer.launch({
       args : [
         '--no-sandbox',
         '--disable-setuid-sandbox'
       ]
     });
-    const page = await browser.newPage();
+    var page = await browser.newPage();
     
     try {
       console.log('in try')
@@ -23,11 +22,9 @@ app.get('/', function(request, response) {
         waitUntil: ['load', 'networkidle0', 'domcontentloaded']
       });
       await delay(1000);
-      await page.emulateMedia('screen')
-      await page.screenshot({ path: path.join(__dirname, '002-screen.png') });
-
-      await page.emulateMedia('print');
-      await page.screenshot({ path: path.join(__dirname, '003-print.png') });
+      var date = new Date();
+      var ymdhms = date.getFullYear() + ('0' + (date.getMonth() + 1)).slice(-2) + ('0' + date.getDate()).slice(-2) + ('0' + date.getHours()).slice(-2) + ('0' + date.getMinutes()).slice(-2) + ('0' + date.getSeconds()).slice(-2)
+      await page.screenshot({ path: `./${ymdhms}.png` });
 
     } catch (err) {
       console.log('in error')
