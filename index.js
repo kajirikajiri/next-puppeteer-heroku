@@ -27,6 +27,7 @@ app.get('/', function(request, response) {
       fs.writeFileSync('screenshot.png', buffer.toString('binary'), 'binary')
     } catch (err) {
       console.log('in error')
+      console.log(err)
       // エラーが起きた際の処理
     } finally {
       console.log('in finally')
