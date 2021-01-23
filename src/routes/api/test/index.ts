@@ -14,7 +14,7 @@ export const root = (req:express.Request, res:express.Response) => {
   writeFs(db)
   readFs(db)
 
-  res.send(req.query)
+  res.send('ok')
 }
 
 const readFs = (db:FirebaseFirestore.Firestore) => {

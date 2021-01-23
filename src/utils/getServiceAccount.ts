@@ -6,7 +6,7 @@ export const getServiceAccount = ()=>{
     serviceAccount.privateKey = privateKey
     return serviceAccount
   } else if (process.env.NODE_ENV === 'development') {
-    const serviceAccount = require('../8889eb754138.json');
+    const serviceAccount = require('../../8889eb754138.json');
     return serviceAccount
   }
 }
