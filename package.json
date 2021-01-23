@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/kajirikajiri/next-puppeteer-heroku#readme",
   "dependencies": {
+    "delay": "^4.4.0",
     "express": "^4.17.1",
     "puppeteer": "^5.5.0"
   }
