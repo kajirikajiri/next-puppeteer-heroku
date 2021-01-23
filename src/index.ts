@@ -2,6 +2,8 @@ import express from 'express'
 
 const app: express.Express = express()
 
+app.set('port', (process.env.PORT || 3000));
+
 // CORSの許可
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*")
@@ -25,4 +27,4 @@ router.post('/api/postTest', (req:express.Request, res:express.Response) => {
 app.use(router)
 
 // 3000番ポートでAPIサーバ起動
-app.listen(3000,()=>{ console.log('Example app listening on port 3000!') })
+app.listen(app.get('port'),()=>{ console.log('Example app listening on port 3000!') })
