@@ -16,6 +16,7 @@ app.get('/', function(request, response) {
     });
     var page = await browser.newPage();
     
+    var res
     try {
       console.log('in try')
       await page.goto('https://www.cresco.co.jp/',{
@@ -24,7 +25,7 @@ app.get('/', function(request, response) {
       await delay(1000);
       var date = new Date();
       var ymdhms = date.getFullYear() + ('0' + (date.getMonth() + 1)).slice(-2) + ('0' + date.getDate()).slice(-2) + ('0' + date.getHours()).slice(-2) + ('0' + date.getMinutes()).slice(-2) + ('0' + date.getSeconds()).slice(-2)
-      await page.screenshot({ path: `./${ymdhms}.png` });
+      res = await page.screenshot({ path: `./${ymdhms}.png` });
 
     } catch (err) {
       console.log('in error')
@@ -35,7 +36,7 @@ app.get('/', function(request, response) {
       await browser.close();
     }
   })();
-  response.send('Hello World!')
+  response.send(`Hello World!: ${res}`)
 });
 
 app.listen(app.get('port'), function() {
