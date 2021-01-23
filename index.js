@@ -1,7 +1,8 @@
 var express = require('express');
 var puppeteer = require('puppeteer')
-const fs = require('fs')
+var path = require('path');
 var app = express();
+var delay = require('delay');
 
 app.set('port', (process.env.PORT || 5000));
 app.use(express.static(__dirname + '/public'));
@@ -21,10 +22,13 @@ app.get('/', function(request, response) {
       await page.goto('https://www.cresco.co.jp/',{
         waitUntil: ['load', 'networkidle0', 'domcontentloaded']
       });
-      await page.waitForTimeout(1000)
+      await delay(1000);
       await page.emulateMedia('screen')
-      const buffer = await page.screenshot({ type: 'png', fullPage: true });
-      fs.writeFileSync('screenshot.png', buffer.toString('binary'), 'binary')
+      await page.screenshot({ path: path.join(__dirname, '002-screen.png') });
+
+      await page.emulateMedia('print');
+      await page.screenshot({ path: path.join(__dirname, '003-print.png') });
+
     } catch (err) {
       console.log('in error')
       console.log(err)
