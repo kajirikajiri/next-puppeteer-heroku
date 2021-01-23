@@ -21,7 +21,7 @@ console.log(process.env.NODE_ENV)
 const router: express.Router = express.Router()
 router.get('/', (req:express.Request, res:express.Response) => {
   let serviceAccount
-  if (process.env.NODE_ENV === 'production' && process.env.FIRE) {
+  if (process.env.NODE_ENV === 'production' && process.env.FIRE && process.env.private_key) {
     console.log(process.env.FIRE)
     serviceAccount = JSON.parse(process.env.FIRE)
     const privateKey = process.env.private_key
