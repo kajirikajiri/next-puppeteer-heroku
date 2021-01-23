@@ -1,5 +1,6 @@
 var express = require('express');
 var puppeteer = require('puppeteer')
+const fs = require('fs')
 var app = express();
 
 app.set('port', (process.env.PORT || 5000));
@@ -18,9 +19,8 @@ app.get('/', function(request, response) {
     try {
       console.log('in try')
       await page.goto('https://www.cresco.co.jp/');
-      console.log('aaa')
-      await page.screenshot({ path: './image.png' });
-      console.log('bbb')
+      const buffer = await page.screenshot({ type: 'png', fullPage: true });
+      fs.writeFileSync('screenshot.png', buffer.toString('binary'), 'binary')
     } catch (err) {
       console.log('in error')
       // エラーが起きた際の処理
