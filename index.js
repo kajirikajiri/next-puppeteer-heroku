@@ -16,11 +16,16 @@ app.get('/', function(request, response) {
     const page = await browser.newPage();
     
     try {
+      console.log('in try')
       await page.goto('https://www.cresco.co.jp/');
+      console.log('aaa')
       await page.screenshot({ path: './image.png' });
+      console.log('bbb')
     } catch (err) {
+      console.log('in error')
       // エラーが起きた際の処理
     } finally {
+      console.log('in finally')
       await browser.close();
     }
   })();
