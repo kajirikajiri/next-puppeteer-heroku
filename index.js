@@ -18,7 +18,11 @@ app.get('/', function(request, response) {
     
     try {
       console.log('in try')
-      await page.goto('https://www.cresco.co.jp/');
+      await page.goto('https://www.cresco.co.jp/',{
+        waitUntil: ['load', 'networkidle0', 'domcontentloaded']
+      });
+      await page.waitForTimeout(1000)
+      await page.emulateMedia('screen')
       const buffer = await page.screenshot({ type: 'png', fullPage: true });
       fs.writeFileSync('screenshot.png', buffer.toString('binary'), 'binary')
     } catch (err) {
