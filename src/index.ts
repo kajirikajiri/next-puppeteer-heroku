@@ -3,6 +3,7 @@ import { domEventCreate, domEventIndex, root } from './routes';
 import cors from 'cors'
 
 const app: express.Express = express()
+
 app.set('port', (process.env.PORT || 4000));
 // CORSの許可
 // app.use((req, res, next) => {
@@ -11,8 +12,8 @@ app.set('port', (process.env.PORT || 4000));
 //   next()
 // })
 // body-parserに基づいた着信リクエストの解析
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
+// app.use(express.json())
+// app.use(express.urlencoded({ extended: true }))
 // GetとPostのルーティング
 // const router: express.Router = express.Router()
 
@@ -29,6 +30,7 @@ app.post('/api/domEvent/create', (req:express.Request, res:express.Response) => 
   console.log('yobareta-')
   domEventCreate(req, res)
 })
+
 app.post('/api/postTest', (req:express.Request, res:express.Response) => {
   res.send(req.body)
 })
@@ -37,4 +39,3 @@ app.post('/api/postTest', (req:express.Request, res:express.Response) => {
 
 // 3000番ポートでAPIサーバ起動
 app.listen(app.get('port'),()=>{ console.log('Example app listening on port 3000!') })
-
