@@ -16,9 +16,11 @@ export const domEventCreate = (req:express.Request, res:express.Response) => {
     userUuid,
     eventsUuid,
     eventsLabel,
-    events
+    events,
+    createdAt,
+    updatedAt
   } = req.body
-  writeFs(db, userUuid, eventsUuid, eventsLabel, events)
+  writeFs(db, userUuid, eventsUuid, eventsLabel, events, createdAt, updatedAt)
   readFs(db)
 
   res.send('ok')
@@ -36,11 +38,13 @@ const readFs = (db:FirebaseFirestore.Firestore) => {
     });
 }
 
-const writeFs=(db:FirebaseFirestore.Firestore, userUuid: string, eventsUuid: string, eventsLabel: string, events: {index: number, selector: string}[])=>{
+const writeFs=(db:FirebaseFirestore.Firestore, userUuid: string, eventsUuid: string, eventsLabel: string, events: {index: number, selector: string, createdAt: string, updatedAt: string}[], createdAt: string, updatedAt: string)=>{
   let docRef = db.collection('users').doc(userUuid).collection('eventsList').doc(eventsUuid);
   let set = docRef.set({
     events,
     label: eventsLabel,
+    createdAt,
+    updatedAt
   });
 
 
