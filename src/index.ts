@@ -13,25 +13,25 @@ app.use((req, res, next) => {
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 // GetとPostのルーティング
-const router: express.Router = express.Router()
+// const router: express.Router = express.Router()
 
-router.get('/api/health', (req:express.Request, res:express.Response) => {
+app.get('/api/health', (req:express.Request, res:express.Response) => {
   res.send('hi !!')
 })
 
-router.get('/api/domEvent/index', (req:express.Request, res:express.Response) => {
+app.get('/api/domEvent/index', (req:express.Request, res:express.Response) => {
   console.log('yobaretaindex-')
   domEventIndex(req, res)
 })
 
-router.post('/api/domEvent/create', (req:express.Request, res:express.Response) => {
+app.post('/api/domEvent/create', (req:express.Request, res:express.Response) => {
   console.log('yobareta-')
   domEventCreate(req, res)
 })
-router.post('/api/postTest', (req:express.Request, res:express.Response) => {
+app.post('/api/postTest', (req:express.Request, res:express.Response) => {
   res.send(req.body)
 })
-app.use(router)
+// app.use(router)
 
 
 // 3000番ポートでAPIサーバ起動
