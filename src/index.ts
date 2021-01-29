@@ -13,8 +13,8 @@ app.use((req, res, next) => {
   next()
 })
 // body-parserに基づいた着信リクエストの解析
-// app.use(express.json())
-// app.use(express.urlencoded({ extended: true }))
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
 // GetとPostのルーティング
 // const router: express.Router = express.Router()
 
