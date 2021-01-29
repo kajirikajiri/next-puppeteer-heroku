@@ -29,6 +29,7 @@ app.get('/api/domEvent/index', (req:express.Request, res:express.Response) => {
 
 app.post('/api/domEvent/create', (req:express.Request, res:express.Response) => {
   console.log('yobareta-')
+  console.log(req)
   domEventCreate(req, res)
 })
 
