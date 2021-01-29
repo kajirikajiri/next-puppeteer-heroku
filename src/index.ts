@@ -16,7 +16,7 @@ app.use(express.urlencoded({ extended: true }))
 // GetとPostのルーティング
 // const router: express.Router = express.Router()
 
-app.get('/api/health', cors({origin: /http:\/\/example.com/}), (req:express.Request, res:express.Response) => {
+app.get('/api/health', cors({origin: 'http://example.com'}), (req:express.Request, res:express.Response) => {
   res.send('hi !!')
 })
 
