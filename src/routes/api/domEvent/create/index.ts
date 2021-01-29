@@ -9,7 +9,6 @@ export const domEventCreate = (req:express.Request, res:express.Response) => {
       credential: admin.credential.cert(serviceAccount)
     });
   }
-  console.log(req.body)
 
   let db = admin.firestore();
   const {
@@ -30,11 +29,9 @@ const readFs = (db:FirebaseFirestore.Firestore) => {
   db.collection('users').get()
     .then((snapshot) => {
       snapshot.forEach((doc) => {
-        console.log(doc.id, '=>', doc.data());
       });
     })
     .catch((err) => {
-      console.log('Error getting documents', err);
     });
 }
 

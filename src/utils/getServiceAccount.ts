@@ -1,6 +1,5 @@
 export const getServiceAccount = ()=>{
   if (process.env.NODE_ENV === 'production' && process.env.FIRE && process.env.private_key) {
-    console.log(process.env.FIRE)
     const serviceAccount = JSON.parse(process.env.FIRE)
     const privateKey = process.env.private_key
     serviceAccount.privateKey = privateKey
