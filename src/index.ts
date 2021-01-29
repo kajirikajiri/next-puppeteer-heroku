@@ -21,7 +21,7 @@ app.get('/api/health', cors({origin: 'http://example.com/', optionsSuccessStatus
   res.json('hi !!')
 })
 
-app.get('/api/domEvent/index', (req:express.Request, res:express.Response) => {
+app.get('/api/domEvent/index', cors({origin: 'http://example.com/', optionsSuccessStatus: 200}), (req:express.Request, res:express.Response) => {
   console.log('yobaretaindex-')
   domEventIndex(req, res)
 })
