@@ -5,7 +5,7 @@ const app: express.Express = express()
 app.set('port', (process.env.PORT || 4000));
 // CORSの許可
 app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", ["chrome-extension://jhildnafefadjmkaodnlooikgokogkld/eventList.html", "chrome-extension://jhildnafefadjmkaodnlooikgokogkld/mainMenu.html", "chrome-extension://jhildnafefadjmkaodnlooikgokogkld/eventPlayer.html"])
+  res.header("Access-Control-Allow-Origin", "chrome-extension://jhildnafefadjmkaodnlooikgokogkld")
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
   next()
 })
