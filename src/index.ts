@@ -1,5 +1,5 @@
 import express from 'express'
-import { domEventCreate, domEventIndex, domEventUpdate } from './routes';
+import { domEventArchive, domEventCreate, domEventIndex, domEventUpdate } from './routes';
 
 const app: express.Express = express()
 
@@ -29,6 +29,10 @@ app.post('/api/domEvent/create', (req:express.Request, res:express.Response) => 
 
 app.post('/api/domEvent/update', (req:express.Request, res:express.Response) => {
   domEventUpdate(req, res)
+})
+
+app.post('/api/domEvent/archive', (req:express.Request, res:express.Response) => {
+  domEventArchive(req, res)
 })
 
 app.post('/api/postTest', (req:express.Request, res:express.Response) => {

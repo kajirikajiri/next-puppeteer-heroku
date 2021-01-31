@@ -18,7 +18,6 @@ export const domEventUpdate = (req:express.Request, res:express.Response) => {
     events,
     updatedAt
   } = req.body
-  console.log(req.body)
   writeFs(db, userUuid, eventsUuid, eventsLabel, events, updatedAt)
   readFs(db)
 
@@ -36,21 +35,11 @@ const readFs = (db:FirebaseFirestore.Firestore) => {
 }
 
 const writeFs=(db:FirebaseFirestore.Firestore, userUuid: string, eventsUuid: string, eventsLabel: string, events: {index: number, selector: string, updatedAt: string}[], updatedAt: string)=>{
-  console.log('in')
   let docRef = db.collection('users').doc(userUuid).collection('eventsList').doc(eventsUuid);
   let set = docRef.update({
     events,
     label: eventsLabel,
     updatedAt
-  });
-
-
-  let aTuringRef = db.collection('users').doc('aturing');
-  let setAlan = aTuringRef.set({
-    'first': 'Alan',
-    'middle': 'Mathison',
-    'last': 'Turing',
-    'born': 1912
   });
 }
 

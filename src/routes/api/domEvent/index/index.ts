@@ -29,7 +29,9 @@ const readFs = (db:FirebaseFirestore.Firestore, userUuid: string) => {
     .then((snapshot) => {
       let result:{}[] = []
       snapshot.forEach((doc) => {
-        result.push(doc.data())
+        if (typeof doc.data().archivedAt === 'undefined'){
+          result.push(doc.data())
+        }
       });
       return result
     })
